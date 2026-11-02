@@ -1,0 +1,4 @@
+# Keep LF endings everywhere - the shell script runs on the TV's busybox.
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf

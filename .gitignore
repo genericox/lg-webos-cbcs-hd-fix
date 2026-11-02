@@ -1,0 +1,26 @@
+# Never commit any LG/Widevine binary or extracted library.
+*.so
+*.so.*
+*.bin
+*.ipk
+# Local payloads / backups produced by the tool or by verification.
+payload.tmp
+newbytes.bin
+*.original.so
+*.patched.so
+
+# Never commit secrets or captures. Keep any such private artifacts under
+# private/ (ignored below). NOTE: .gitignore cannot protect already-tracked
+# files - never `git add` these.
+private/
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.har
+*.pcap
+*.pcapng
