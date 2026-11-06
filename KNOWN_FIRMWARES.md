@@ -24,8 +24,10 @@ each protected subsample when `cipher_mode == CBC (1)` and `encrypt_blocks != 0`
 | patched bytes | `079a5c4655f8083c1a44d9f81000012803d1d9f8140000b100220792` |
 
 Status: **verified** — 1080p AVC and 1080p HEVC SDR play cleanly on this TV
-after the fix (real on-device playback, not just API success). UHD/2160p is
-**not** fixed.
+after the fix (real on-device playback, not just API success). Protected
+2160p50 HEVC Main10 HLG (4x4 tiles) also plays cleanly at 50 fps with the same
+patch, as long as the Live TV app is not decoding in the background (with it
+open, about 43 fps).
 
 ## Adding a new TV / firmware
 

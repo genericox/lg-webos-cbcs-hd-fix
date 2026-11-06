@@ -1,7 +1,7 @@
 # webOS CBCS HD fix
 
-Enable **1080p (HD) playback** of CBCS-encrypted DRM video on old, **rooted** LG
-webOS TVs by repairing a decryption bug in the TV's **own** Widevine modular
+Enable **1080p (HD)** and, on the LG C9, **2160p (UHD)** playback of
+CBCS-encrypted DRM video on old, **rooted** LG webOS TVs by repairing a decryption bug in the TV's **own** Widevine modular
 decryptor.
 
 On some early LG webOS firmwares, the modular Widevine decryptor advances a
@@ -15,8 +15,14 @@ subsample (only when `cipher_mode == CBC (1)` and `encrypt_blocks != 0`),
 matching the public behaviour of [Shaka Packager's constant-IV CBCS
 cryptor](https://github.com/shaka-project/shaka-packager/blob/main/packager/media/base/aes_pattern_cryptor.cc).
 
-> **Scope: HD / 1080p only.** UHD / 2160p is **not** fixed — it still decodes to
-> a multicolored mosaic and is out of scope for this tool.
+> **UHD / 2160p works too (C9).** With this same patch and no other native
+> change, protected 2160p50 (HEVC Main10 HLG, 4x4 tiles, CBCS) plays with a
+> clean picture on the C9. A mosaic seen earlier came from a source whose UHD
+> renditions were not finished yet, not from the decryptor. For a full 50 fps
+> on the C9, nothing else may be using the video decoder: the Live TV app keeps
+> decoding the tuner in the background and drops 2160p50 to about 43 fps.
+> Close it before playing 4K, or use
+> [webos-livetv-guard](https://github.com/genericox/webos-livetv-guard).
 
 Full public diagnosis and evidence: **Ravboni/race-weekend#24**
 (https://github.com/Ravboni/race-weekend/issues/24).
@@ -99,6 +105,12 @@ performs before it installs anything.
 The 28 corrected bytes were produced reproducibly with Ghidra; the generator and
 the exact offsets, hashes, and old/new byte blocks are in
 [`reproduce/`](reproduce/) and [KNOWN_FIRMWARES.md](KNOWN_FIRMWARES.md).
+
+## Contributing and testing
+
+Test reports for other TVs and firmwares are the most useful contribution. Read
+[CONTRIBUTING.md](CONTRIBUTING.md) first: it lists what to test, what never to
+share, and a report template.
 
 ## Safety & legal
 

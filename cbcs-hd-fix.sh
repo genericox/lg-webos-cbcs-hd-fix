@@ -9,7 +9,7 @@
 # webosbrew boot hook. The firmware file on disk is never overwritten, and a
 # full backup of the original is kept. Run `disable` to roll back.
 #
-# Scope: HD / 1080p only. UHD / 2160p is NOT fixed by this patch.
+# Scope: HD / 1080p, and UHD / 2160p where verified (LG C9; see README).
 # Requires: root, a rooted webOS TV (Homebrew Channel / webosbrew), busybox.
 #
 # Usage:
